@@ -1,0 +1,36 @@
+//SOLUTION FOR SELECTION SORT
+//WE ARE CURRENTLY STANDING AT SOME PLACE NOW WE NEED TO FIND THE MIN IN FUTURE.
+//IF WE ARE NOT FINDING MIN SO WE ARE STANDING ON THE MIN ELEMENT AND GO TO THE NEXT.
+//IF WE FIND THE MIN ELEMENT IT'S TIME FOR THE SWAP.
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+    public static void selectionSort(int arr[])
+    {
+        int n=arr.length;
+        for(int i=0;i<n-1;i++)
+        {
+            int minTillIDX=i;
+            for(int j=i+1;j<n;j++)
+            {
+                if(arr[j]<arr[minTillIDX])
+                {
+                    minTillIDX=j;
+                }
+            }
+            int ele=arr[i];
+            arr[i]=arr[minTillIDX];
+            arr[minTillIDX]=ele;
+        }
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		int arr[]={7,6,5,4,3,2};
+		selectionSort(arr);
+		System.out.println(Arrays.toString(arr));
+	}
+}
