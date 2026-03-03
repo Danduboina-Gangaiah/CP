@@ -1,0 +1,47 @@
+class Solution {
+
+
+    private int partitioning(int arr[],int low,int high)
+    {
+        int SR=low-1;
+
+        int pivotEle=arr[high];
+
+        for(int i=low;i<high;i++)
+        {
+            if(arr[i]<pivotEle)
+            {
+                SR++;
+                swap(arr,SR,i);
+            }
+        }
+        swap(arr,SR+1,high);
+        return SR+1;
+    }
+
+    private void swap(int arr[],int SR,int lowerEle)
+    {
+        int temp=arr[SR];
+        arr[SR]=arr[lowerEle];
+        arr[lowerEle]=temp;
+    }
+    private void quickSort(int arr[],int low,int high)
+    {
+        if(low<high)
+        {
+            int pivotIdx=partitioning(arr,low,high);
+
+            quickSort(arr,low,pivotIdx-1);
+            quickSort(arr,pivotIdx+1,high);
+        }
+    }
+    public int[] sortArray(int[] arr)
+    {
+       int low=0;
+       int high=arr.length-1;
+
+       quickSort(arr,low,high);
+
+       return arr;
+    }
+}Q
