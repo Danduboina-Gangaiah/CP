@@ -1,0 +1,46 @@
+class Solution {
+    private void flip(int[] arr, int idx) {
+       int st=0;
+       int en=idx;
+       while(st<en)
+       {
+        int temp=arr[en];
+        arr[en]=arr[st];
+        arr[st]=temp;
+        st++;
+        en--;
+       }
+    }
+    public List<Integer> pancakeSort(int[] arr)
+    {
+        List<Integer> ans=new ArrayList<Integer>();
+        //traverse from back for marking region
+        int n=arr.length;
+        int idx=-1;
+        //now find the needed index
+        for(int i=n-1;i>0;i--)
+        {
+            for(int j=0;j<=i;j++)
+            {
+                if(arr[j]==i+1)
+                {
+                    idx=j;
+                    break;
+                }
+            }
+
+            //now it's time to flip
+            //check whether the index is at 0 
+            //index should not be at 0 if it is at 0 then flip not needed
+            if(idx!=0)
+            {
+                //then do flip
+                flip(arr,idx);
+                ans.add(idx+1);
+            }
+            flip(arr,i);
+            ans.add(i+1);
+        }
+        return ans;
+    }
+}
